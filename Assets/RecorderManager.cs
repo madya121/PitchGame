@@ -7,7 +7,7 @@ namespace FinerGames.PitchDetector.Recorder
 {
     public class RecorderManager : MonoBehaviour
     {
-        string[] supportedNotes = new string[] { "B", "C#", "D", "D#", "F", "G", "A", "A#" };
+        string[] supportedNotes = new string[] { "B 4", "C# 5", "D# 5", "E 5", "F# 5", "G# 5", "A# 5", "B 5" };
 
         [SerializeField] PitchDetector detector;
 
@@ -30,12 +30,25 @@ namespace FinerGames.PitchDetector.Recorder
             noteMap.Add(supportedNotes[5], new List<int>() { 7, 6, 5, 4, 3 });
             noteMap.Add(supportedNotes[6], new List<int>() { 7, 6, 5, 4, 3, 2 });
             noteMap.Add(supportedNotes[7], new List<int>() { 7, 6, 5, 4, 3, 1});
+
+            float sc = getScreenWidth() * 2;
+            float numberNotes = 8f;
+            float noteDivider = sc / numberNotes;
+
+            for (int i = 7; i >= 1; i--)
+            {
+                notes[i].transform.localPosition = new Vector3(i * noteDivider - getScreenWidth(), 0.1f, 0);
+                notes[i].transform.localScale = new Vector3(8, 1, 1);
+            }
+
+            notes[0].transform.localPosition = new Vector3(1 * noteDivider - getScreenWidth() + noteDivider / 2.5f, -0.1f, 0);
+            notes[0].transform.localScale = new Vector3(11.5f, 1.2f, 1);
         }
 
         // Update is called once per frame
         void Update()
         {
-            string noteName = PitchDsp.GetNoteName(detector.MidiNote, true, false);
+            string noteName = PitchDsp.GetNoteName(detector.MidiNote, true, true);
 
             RenderNote(noteName);
         }
@@ -59,6 +72,11 @@ namespace FinerGames.PitchDetector.Recorder
                     notes[i].GetComponent<SpriteRenderer>().color = Color.red;
                 }
             }
+        }
+
+        public float getScreenWidth()
+        {
+            return 5f * 16f / 9f;
         }
     }
 }

@@ -155,9 +155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091f26b91805c7c4580918402fb34498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 120
+  BPM: 85
+  Bar: 8
+  BeatPerBar: 4
+  MeasurePerBeat: 2
+  MeasureHeight: 1
   startY: 5
-  beatNumber: 0
 --- !u!1 &1330995334
 GameObject:
   m_ObjectHideFlags: 0
