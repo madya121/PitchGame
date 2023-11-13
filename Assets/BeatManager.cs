@@ -75,7 +75,8 @@ public class BeatManager : MonoBehaviour
         GameObject g = new GameObject();
         LineRenderer l = g.AddComponent<LineRenderer>();
         Beat b = g.AddComponent<Beat>();
-        b.init(_bar * BeatPerBar * MeasurePerBeat + measureNumber, this, _note, _height);
+        int _measureNumber = _bar * BeatPerBar * MeasurePerBeat + measureNumber;
+        b.init(_measureNumber, this, _note, _measureNumber + _height * MeasurePerBeat);
 
         l.material = new Material(Shader.Find("Sprites/Default"));
         l.positionCount = 2;
