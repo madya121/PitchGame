@@ -38,11 +38,11 @@ namespace FinerGames.PitchDetector.Recorder
             for (int i = 7; i >= 1; i--)
             {
                 notes[i].transform.localPosition = new Vector3(i * noteDivider - getScreenWidth(), 0f, 0);
-                notes[i].transform.localScale = new Vector3(12, 2, 1);
+                notes[i].transform.localScale = new Vector3(5, 1, 1);
             }
 
             notes[0].transform.localPosition = new Vector3(1 * noteDivider - getScreenWidth() + noteDivider / 2.5f, -0.5f, 0);
-            notes[0].transform.localScale = new Vector3(11.5f, 2f, 1);
+            notes[0].transform.localScale = new Vector3(5f, 1f, 1);
         }
 
         // Update is called once per frame

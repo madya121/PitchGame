@@ -49,9 +49,10 @@ public class Beat : MonoBehaviour
         float y = Mathf.Lerp(startY, 0f, t);
         float y2 = Mathf.Lerp(startY2, 0f, t2);
 
-        if (direction == -1)
+        if (note == 8)
         {
-            y = Mathf.Lerp(-startY, 0f, t);
+            y = Mathf.Lerp(-startY + 0.5f, -0.5f, t);
+            y2 = Mathf.Lerp(-startY2 + 0.5f, -0.5f, t2);
         }
 
         if (note == 0)
@@ -60,6 +61,17 @@ public class Beat : MonoBehaviour
             l.SetPosition(1, new Vector3(15, y, 0));
             l.widthMultiplier = this.height;
             if (y == 0) Destroy(gameObject);
+        } else if (note == 8) {
+            float pos = noteDivider * (float)(8 - 7) - getScreenWidth() + noteDivider / 2.5f;
+
+            l.SetPosition(0, new Vector3(pos, y, 0));
+            l.SetPosition(1, new Vector3(pos, y2, 0));
+            l.widthMultiplier = 1.5f;
+
+            l.startColor = new Color(0.78f, 0.86f, 0.65f);
+            l.endColor = new Color(0.78f, 0.86f, 0.65f);
+
+            if (y2 == -0.5f) Destroy(gameObject);
         } else
         {
             float pos = noteDivider * (float)(8 - note) - getScreenWidth();
