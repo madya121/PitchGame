@@ -6,7 +6,7 @@ public class OldMcDonald : BaseMusic
 {
     public override float GetBPM()
     {
-        return 110;
+        return 60;
     }
 
     public override int GetBar()
@@ -21,7 +21,7 @@ public class OldMcDonald : BaseMusic
 
     public override int GetMeasurePerBeat()
     {
-        return 2;
+        return 3;
     }
 
     public override int GetMeasureHeight()

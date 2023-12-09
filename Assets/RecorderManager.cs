@@ -65,11 +65,11 @@ namespace FinerGames.PitchDetector.Recorder
             {
                 if (noteMap[noteName].Contains(i))
                 {
-                    notes[i].GetComponent<SpriteRenderer>().color = Color.green;
+                    notes[i].GetComponent<SpriteRenderer>().color = Color.red;
                 } 
                 else
                 {
-                    notes[i].GetComponent<SpriteRenderer>().color = Color.red;
+                    notes[i].GetComponent<SpriteRenderer>().color = Color.green;
                 }
             }
         }
