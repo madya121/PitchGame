@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FinerGames.PitchDetector
 {
@@ -10,5 +11,12 @@ namespace FinerGames.PitchDetector
         public bool IsRecording = true;
 
         public int SampleRate = 44100;
+
+        private void Awake()
+        {
+            DeviceName = PlayerPrefs.GetString("Mic");
+            if (DeviceName == "" && Microphone.devices.Length > 0)
+                DeviceName = Microphone.devices[0];
+        }
     }
 }

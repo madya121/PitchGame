@@ -26,4 +26,9 @@ public class SongSelectionManager : MonoBehaviour
         }
         SceneManager.LoadScene("DemoScene");
     }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

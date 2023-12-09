@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FinerGames.PitchDetector.Recorder;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,9 @@ public class BeatManager : MonoBehaviour
     public int BeatPerBar = 4;
     public int MeasurePerBeat = 1;
     public int MeasureHeight = 2;
+
+    public string nextScene = "";
+    public RecorderManager recorderManager;
 
     public float startY = 5;
     public BaseMusic music;
@@ -45,7 +49,8 @@ public class BeatManager : MonoBehaviour
         groupNotes.Add(8, new List<int>() { 6, 8 });
 
         for (int i = 1; i <= Bar; i++) {
-            addBeatBar(i * BeatPerBar * MeasurePerBeat + 1);
+            addBeatBarTop(i * BeatPerBar * MeasurePerBeat + 1);
+            addBeatBarBottom(i * BeatPerBar * MeasurePerBeat + 1);
         }
 
         List<Note> notes = music.GetNotes();
@@ -81,18 +86,35 @@ public class BeatManager : MonoBehaviour
     void FixedUpdate() {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Note");
         if (objs.Length == 0) {
-            SceneManager.LoadScene("Song Selection");
+            if (nextScene == "")
+                SceneManager.LoadScene("Song Selection");
+            else SceneManager.LoadScene(nextScene);
         }
     }
 
-    void addBeatBar(int measureNumber)
+    void addBeatBarTop(int measureNumber)
     {
         GameObject g = new GameObject();
         g.tag = "Note";
+        g.name = "Bar";
 
         LineRenderer l = g.AddComponent<LineRenderer>();
         Beat b = g.AddComponent<Beat>();
         b.init(measureNumber, this, 0, 0.02f);
+
+        l.material = new Material(Shader.Find("Sprites/Default"));
+        l.positionCount = 2;
+    }
+    
+    void addBeatBarBottom(int measureNumber)
+    {
+        GameObject g = new GameObject();
+        g.tag = "Note";
+        g.name = "Bar";
+
+        LineRenderer l = g.AddComponent<LineRenderer>();
+        Beat b = g.AddComponent<Beat>();
+        b.init(measureNumber, this, -1, 0.02f);
 
         l.material = new Material(Shader.Find("Sprites/Default"));
         l.positionCount = 2;
@@ -102,6 +124,8 @@ public class BeatManager : MonoBehaviour
     {
         GameObject g = new GameObject();
         g.tag = "Note";
+        g.name = "Note";
+        g.transform.parent = recorderManager.transform;
 
         LineRenderer l = g.AddComponent<LineRenderer>();
         Beat b = g.AddComponent<Beat>();

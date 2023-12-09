@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pitch;
@@ -48,9 +49,34 @@ namespace FinerGames.PitchDetector.Recorder
         // Update is called once per frame
         void Update()
         {
-            string noteName = PitchDsp.GetNoteName(detector.MidiNote, true, true);
-
+            string noteName = GetKeyPressed();
+            
+            if (noteName == "")
+                noteName = PitchDsp.GetNoteName(detector.MidiNote, true, true);
+            
             RenderNote(noteName);
+        }
+
+        String GetKeyPressed()
+        {
+            if (Input.GetKey(KeyCode.A))
+                return "B 5";
+            if (Input.GetKey(KeyCode.S))
+                return "A# 5";
+            if (Input.GetKey(KeyCode.D))
+                return "G# 5";
+            if (Input.GetKey(KeyCode.F))
+                return "F# 5";
+            if (Input.GetKey(KeyCode.G))
+                return "E 5";
+            if (Input.GetKey(KeyCode.H))
+                return "D# 5";
+            if (Input.GetKey(KeyCode.J))
+                return "C# 5";
+            if (Input.GetKey(KeyCode.K))
+                return "B 4";
+            
+            return "";
         }
 
         void RenderNote(string noteName)
@@ -60,6 +86,8 @@ namespace FinerGames.PitchDetector.Recorder
 
             if (noteName == null || !noteMap.ContainsKey(noteName))
                 return;
+            
+            BroadcastMessage("NoteHit", noteMap[noteName], SendMessageOptions.RequireReceiver);
 
             for (int i = 0; i < notes.Length; i++)
             {

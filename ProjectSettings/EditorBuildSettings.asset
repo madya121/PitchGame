@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Plugins/PitchDetector/Demo/Scenes/MainMenu.unity
+    guid: db06930cb156447bfbd70fc55db97be6
+  - enabled: 1
     path: Assets/Plugins/PitchDetector/Demo/Scenes/Song Selection.unity
     guid: 9085bdd002eec7e44b7ff02e2847f778
   - enabled: 1
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Plugins/PitchDetector/Demo/Scenes/Learning Module.unity
     guid: b96ab543b2004f54291e4d10dde6c27b
+  - enabled: 1
+    path: Assets/Plugins/PitchDetector/Demo/Scenes/HotCrossBunsPractice.unity
+    guid: c6138a68ddc2d495f989a843bbed2c52
   m_configObjects: {}
