@@ -8,7 +8,7 @@ namespace FinerGames.PitchDetector.Recorder
 {
     public class RecorderManager : MonoBehaviour
     {
-        string[] supportedNotes = new string[] { "B 4", "C# 5", "D# 5", "E 5", "F# 5", "G# 5", "A# 5", "B 5" };
+        string[] supportedNotes = new string[] { "C 5", "D 5", "E 5", "F 5", "G 5", "A 5", "B 5", "C 6" };
 
         [SerializeField] PitchDetector detector;
 

@@ -16,7 +16,7 @@ public class TwinkleTwinkle : BaseMusic
 
     public override float GetBPM()
     {
-        return 100;
+        return 60;
     }
 
     public override int GetMeasureHeight()

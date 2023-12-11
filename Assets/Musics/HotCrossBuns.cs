@@ -16,7 +16,7 @@ public class HotCrossBuns : BaseMusic
 
     public override float GetBPM()
     {
-        return 100;
+        return 70;
     }
 
     public override int GetMeasureHeight()
